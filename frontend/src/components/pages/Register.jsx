@@ -10,6 +10,7 @@ const Register = () => {
     role: 'admin',
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,12 +20,15 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
     try {
       const res = await api.post('/auth/register', formData);
-      alert("Regstered SuccessFully!")
+      alert("Registered Successfully!");
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -61,9 +65,11 @@ const Register = () => {
         {error && <p className="text-red-600 font-medium">{error}</p>}
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-semibold"
+          disabled={loading}
+          className={`w-full ${loading ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'
+            } text-white py-2 rounded-md font-semibold`}
         >
-          Register
+          {loading ? 'Registering...' : 'Register'}
         </button>
       </form>
       <p className="mt-4 text-sm text-gray-600">
