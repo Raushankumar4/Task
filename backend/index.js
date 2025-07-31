@@ -21,6 +21,9 @@ app.use(
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
+app.get("/favicon.ico", (req, res) => {
+  res.status(204).end();
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/agents", agentRoutes);
 app.use("/api/tasks", taskRoutes);
