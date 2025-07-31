@@ -13,6 +13,7 @@ const Login = () => {
     setError('');
     try {
       const res = await api.post('/auth/login', { email, password });
+      alert("Login SucessFully")
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data));
       navigate('/dashboard');
