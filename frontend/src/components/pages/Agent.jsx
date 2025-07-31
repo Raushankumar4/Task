@@ -16,6 +16,7 @@ const Agents = () => {
       await api.post('/agents', formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      alert("Added")
       setFormData({ name: '', email: '', password: '' });
       window.location.reload();
     } catch (err) {

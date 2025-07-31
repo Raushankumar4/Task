@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
 
-const UploadTasks = () => {
+const UploadTasks = ({ setShowUploadModal }) => {
   const [file, setFile] = useState(null);
   const [agents, setAgents] = useState([]);
   const [tasks, setTasks] = useState({});
@@ -39,8 +39,9 @@ const UploadTasks = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      alert("Uploaded")
+      setShowUploadModal(false)
       setMessage('✅ Tasks uploaded & distributed!');
-      fetchTasksForAgents();
     } catch (err) {
       setMessage(err.response?.data?.message || '❌ Upload failed');
     }

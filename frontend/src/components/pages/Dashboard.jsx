@@ -73,7 +73,7 @@ const Dashboard = () => {
                 &times;
               </button>
             </div>
-            <UploadTasks />
+            <UploadTasks setShowUploadModal={setShowUploadModal} />
           </div>
         </div>
       )}
